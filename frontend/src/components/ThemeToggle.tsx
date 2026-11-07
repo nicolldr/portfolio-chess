@@ -8,10 +8,16 @@ type ThemeToggleProps = {
 export function ThemeToggle({ theme, onToggle }: ThemeToggleProps) {
   const isDark = theme === 'dark'
   return (
-    <button className="theme-toggle" type="button" onClick={onToggle} aria-label={`Cambiar a tema ${isDark ? 'claro' : 'oscuro'}`}>
-      <span aria-hidden="true">{isDark ? '☾' : '☼'}</span>
-      <span>{isDark ? 'Modo oscuro' : 'Modo claro'}</span>
-      <span className={`toggle-track${isDark ? ' on' : ''}`}><span /></span>
+    <button
+      className="theme-toggle"
+      type="button"
+      onClick={onToggle}
+      aria-label={`Cambiar a tema ${isDark ? 'claro' : 'oscuro'}`}
+      title={`Cambiar a tema ${isDark ? 'claro' : 'oscuro'}`}
+    >
+      <span className={`theme-choice${!isDark ? ' active' : ''}`} aria-hidden="true">☼</span>
+      <span className="theme-divider" aria-hidden="true" />
+      <span className={`theme-choice${isDark ? ' active' : ''}`} aria-hidden="true">☾</span>
     </button>
   )
 }
