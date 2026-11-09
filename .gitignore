@@ -38,3 +38,6 @@ backend/target/
 
 # Archivos temporales
 *.tmp
+
+# Perfiles locales de navegador
+chrome-review-profile/
