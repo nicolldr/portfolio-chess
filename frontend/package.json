@@ -7,9 +7,12 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "import:puzzles": "node scripts/import-puzzles.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
+    "chess.js": "^1.4.0",
+    "lucide-react": "^1.75.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"
   },

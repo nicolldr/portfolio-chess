@@ -1,21 +1,31 @@
+const lockedSections = [
+  { icon: 'folder', label: 'Mis Proyectos' },
+  { icon: 'cap', label: 'Mi Formación' },
+  { icon: 'briefcase', label: 'Mi Experiencia' },
+]
+
 export function ChallengePanel() {
   return (
-    <aside className="challenge-panel" aria-label="Información del reto">
-      <section className="challenge-intro">
-        <span className="trophy-icon" aria-hidden="true">
-          <svg viewBox="0 0 64 64"><path d="M18 8h28v8h12v8c0 10-6 16-15 17-2 3-5 5-8 6v6h12v7H17v-7h12v-6c-4-1-7-3-9-6-9-1-15-7-15-17v-8h13V8Zm0 14h-7v2c0 5 2 9 7 10V22Zm35 0h-7v12c5-1 7-5 7-10v-2Z" /></svg>
-        </span>
-        <div><h2>¡Tu primer reto!</h2><p>Mueve la dama y da jaque mate en 1 jugada.</p></div>
+    <aside className="right-column">
+      <section className="info-card welcome-card">
+        <div className="card-title"><span className="info-symbol" aria-hidden="true">i</span><h2>Bienvenido</h2></div>
+        <div className="welcome-copy"><h3>¡Hola!</h3><p>Explora mi portfolio a través del ajedrez. Resuelve los retos para descubrir más sobre mí.</p></div>
+        <div className="tip"><span className="tip-icon" aria-hidden="true">💡</span><div><h3>Consejo</h3><p>Completa los retos para desbloquear nuevas secciones de mi portfolio.</p></div></div>
       </section>
-      <section className="challenge-hint">
-        <h3><span className="bulb-icon" aria-hidden="true"><svg viewBox="0 0 32 40"><path d="M16 2a11 11 0 0 0-7.4 19.1c1.5 1.4 2.4 3.2 2.6 5.2h9.6c.2-2 1.1-3.8 2.6-5.2A11 11 0 0 0 16 2Z" /><path d="M11.5 30h9M12.5 34h7M14 38h4" /></svg></span> Un pequeño adelanto...</h3>
-        <p>Soy una apasionada del ajedrez, la tecnología y los retos. Me encanta aprender, resolver problemas y construir soluciones eficientes.</p>
+      <section className="info-card locked-card">
+        <div className="card-title"><span aria-hidden="true"><LockIcon /></span><h2>Secciones bloqueadas</h2></div>
+        <div className="locked-list">{lockedSections.map((section) => <div className="locked-item" key={section.label} aria-label={`${section.label}, bloqueado`}><span className="locked-icon" aria-hidden="true"><SectionIcon name={section.icon} /></span><span>{section.label}</span><span className="lock" aria-hidden="true"><LockIcon /></span></div>)}</div>
       </section>
-      <section className="challenge-progress" aria-label="Progreso del reto">
-        <div className="progress-copy"><strong>Tu progreso</strong><strong>1 / 5</strong></div>
-        <div className="progress-track" role="img" aria-label="Progreso visual: 1 de 5"><span /></div>
-      </section>
-      <button className="next-button" type="button"><span aria-hidden="true">→</span> Siguiente movimiento</button>
     </aside>
   )
+}
+
+function LockIcon() {
+  return <svg viewBox="0 0 24 24"><path d="M7 10V7a5 5 0 0 1 10 0v3h2v12H5V10h2Zm2 0h6V7a3 3 0 0 0-6 0v3Zm3 3a2 2 0 0 0-1 3.73V19h2v-2.27A2 2 0 0 0 12 13Z" fill="currentColor" /></svg>
+}
+
+function SectionIcon({ name }: { name: string }) {
+  if (name === 'folder') return <svg viewBox="0 0 24 24"><path d="M2 5h8l2 2h10v12H2V5Zm2 4v8h14v-8H4Z" fill="currentColor" /></svg>
+  if (name === 'cap') return <svg viewBox="0 0 24 24"><path d="m1 9 11-6 11 6-11 6L1 9Zm4 3.1 7 3.8 7-3.8V17c-3.6 3-10.4 3-14 0v-4.9ZM21 10h2v7h-2z" fill="currentColor" /></svg>
+  return <svg viewBox="0 0 24 24"><path d="M8 4h8l1.5 3H22v13H2V7h4.5L8 4Zm1.3 3h5.4l-.5-1h-4.4l-.5 1ZM5 10v7h14v-7H5Zm4 1h6v2H9z" fill="currentColor" /></svg>
 }
